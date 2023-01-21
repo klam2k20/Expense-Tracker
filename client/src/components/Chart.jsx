@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import Labels from './Labels';
 
 ChartJS.register(ArcElement);
 
@@ -26,8 +27,8 @@ const config = {
 
 function Chart() {
   return (
-    <div className="flex justify-center bg-red-500">
-      <div className="max-w-xs bg-white flex flex-col gap-4 sm:w-3/4 w-full">
+    <div className="flex justify-center py-8">
+      <div className="max-w-xs flex flex-col items-center gap-8 sm:w-3/4 w-full px-4">
         <div className="relative">
           <Doughnut data={config.data} options={config.options} />
           <h1 className="text-xl chart-total">
@@ -35,7 +36,7 @@ function Chart() {
             <span className="block text-emerald-500 font-bold text-3xl">$0</span>
           </h1>
         </div>
-        <div className="bg-blue-500">Labels</div>
+        <Labels />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@
 div,
 inputs,
 select {
-	@apply drop-shadow-lg;
+	@apply drop-shadow-sm;
 }
 
 .form-input {

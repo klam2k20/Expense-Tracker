@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App lg:max-w-screen-lg mx-auto">
       <h1 className="text-center text-white py-8 bg-slate-800 text-4xl xl:rounded">Expense Tracker</h1>
-      <div className="grid md:grid-cols-2 py-8">
+      <div className="grid md:grid-cols-2">
         <Chart />
         <Form />
       </div>
