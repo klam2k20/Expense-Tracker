@@ -27,10 +27,10 @@ const config = {
 function Chart() {
   return (
     <div className="flex justify-center bg-red-500">
-      <div className="max-w-sm bg-white flex flex-col gap-4">
+      <div className="max-w-xs bg-white flex flex-col gap-4 sm:w-3/4 w-full">
         <div className="relative">
           <Doughnut data={config.data} options={config.options} />
-          <h1 className="text-lg chart-total">
+          <h1 className="text-xl chart-total">
             Total
             <span className="block text-emerald-500 font-bold text-3xl">$0</span>
           </h1>
