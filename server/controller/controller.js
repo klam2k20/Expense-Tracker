@@ -72,6 +72,7 @@ async function getLabels(req, res) {
       type: label.type,
       amount: label.amount,
       color: label.category_info.color,
+      categoryId: label.category_info._id,
     }));
     res.json(result);
   }).catch((err) => res.status(400).json({ message: `Error while Getting Labels ${err}` }));

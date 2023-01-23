@@ -9,6 +9,7 @@ const getSum = (transaction, type) => {
         type: key,
         color: transactions[0].color,
         sum: _.sumBy(transactions, 'amount'),
+        categoryId: transactions[0].categoryId,
       }; // [{Investments, red, 100}, {Savings, green, 200}, {Expenses, blue, 300}]
     }).value();
   return sum;

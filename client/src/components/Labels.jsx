@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { useGetLabelsQuery } from '../store/apiSlice';
 import { getLabels } from '../utilities/utilities';
 
-// TODO: Update doughnut with correct percentage
-// TODO: Update total label with total
 // TODO: Go through the components and mark specific props as required
+// TODO: Make naming of labels and transactions consistent
 
 function Labels() {
   const {
@@ -16,7 +15,7 @@ function Labels() {
   if (isFetching) {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
-    content = getLabels(data, 'type').map((category) => <Label key={category._id} category={category} />);
+    content = getLabels(data, 'type').map((category) => <Label key={category.categoryId} category={category} />);
   } else if (isError) {
     content = <div>{error.toString()}</div>;
   }
