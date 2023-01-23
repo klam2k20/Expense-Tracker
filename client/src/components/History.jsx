@@ -30,7 +30,11 @@ function Transaction({ transaction }) {
   return (
     <div className="flex justify-center bg-gray-50 rounded-r py-2" style={{ borderRight: `0.5rem solid ${transaction.color}` }}>
       <button className="px-2" aria-label="Delete" type="button"><UilTrash size="20" color={transaction.color} /></button>
-      <span className="w-full text-center">{transaction.type}</span>
+      <div className="flex justify-between w-full pr-2">
+        <span>{transaction.type}</span>
+        <span className="font-bold">{`$${transaction.amount}`}</span>
+      </div>
+
     </div>
   );
 }
@@ -39,7 +43,7 @@ Transaction.defaultProps = {
   transaction: PropTypes.shape({
     color: 'rgb(255, 205, 86)',
     type: '',
-    percent: 0,
+    amount: 0,
   }),
 };
 
@@ -47,7 +51,7 @@ Transaction.propTypes = {
   transaction: PropTypes.shape({
     color: PropTypes.string,
     type: PropTypes.string,
-    percent: PropTypes.number,
+    amount: PropTypes.number,
   }),
 };
 export default History;
