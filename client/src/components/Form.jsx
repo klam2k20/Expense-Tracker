@@ -1,13 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import History from './History';
+import { useAddTransactionMutation } from '../store/apiSlice';
 
 function Form() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      name: '',
+      amount: '',
+    },
+  });
+  const [api] = useAddTransactionMutation();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (!data) return;
-    console.log(data);
+    await api(data).unwrap();
+    reset();
   };
 
   return (
@@ -16,11 +24,11 @@ function Form() {
         <h1 className="text-xl font-bold text-center">Transaction</h1>
         <form id="form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-4 mb-4">
-            <input {...register('title')} type="text" placeholder="Salary, Rent, Utilities" className="form-input" />
+            <input {...register('name')} type="text" placeholder="Salary, Rent, Utilities" className="form-input" />
             <select {...register('type')} className="form-input">
-              <option value="Investment" defaultValue>Investment</option>
-              <option value="Saving">Saving</option>
-              <option value="Expense">Expense</option>
+              <option value="Investments" defaultValue>Investments</option>
+              <option value="Savings">Savings</option>
+              <option value="Expenses">Expenses</option>
             </select>
             <input {...register('amount')} type="text" placeholder="Amount" className="form-input" />
             <button className="bg-indigo-500 w-full text-white py-2" type="submit">Add Transaction</button>
