@@ -1,7 +1,6 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-
 import Labels from './Labels';
 import { getDoughnutConfigs, getTotal } from '../utilities/utilities';
 import { useGetLabelsQuery } from '../store/apiSlice';
@@ -28,13 +27,13 @@ function Chart() {
       <div className="max-w-xs flex flex-col items-center gap-8 sm:w-3/4 w-full px-4">
         <div className="relative">
           {content}
-          <h1 className="text-xl chart-total">
+          <h1 className="text-xl chart-title">
             Total
-            <span className="block text-emerald-500 font-bold text-3xl">
-              $
-              {getTotal(data) ?? 0}
-            </span>
           </h1>
+          <span className="block text-emerald-500 font-bold text-3xl chart-total">
+            $
+            {getTotal(data) ?? 0}
+          </span>
         </div>
         <Labels />
       </div>

@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import { useGetLabelsQuery } from '../store/apiSlice';
 import { getLabels } from '../utilities/utilities';
 
-// TODO: Make naming of labels and transactions consistent
-// TODO: Remove old logo
-
 function Labels() {
   const {
     data, isFetching, isSuccess, isError, error,
