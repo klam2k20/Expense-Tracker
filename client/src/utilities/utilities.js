@@ -14,12 +14,37 @@ const getSum = (transaction, type) => {
   return sum;
 };
 
-const getLabels = (transactions) => {
+export const getTotal = (transaction) => {
+  const categorySums = getSum(transaction);
+  return _.sum(categorySums);
+};
+
+export const getLabels = (transactions) => {
   const categorySums = getSum(transactions, 'type');
-  const total = _.sum(getSum(transactions));
+  const total = getTotal(transactions);
   const labels = _(categorySums)
     .map((category) => _.assign(category, { percent: (100 * category.sum) / total })).value();
   return labels;
 };
 
-export default getLabels;
+export const getDoughnutConfigs = (transaction) => {
+  const data = getSum(transaction);
+  let backgroundColor = _.map(transaction, (t) => t.color);
+  backgroundColor = _.uniq(backgroundColor);
+  const config = {
+    data: {
+      datasets: [{
+        label: 'My First Dataset',
+        data,
+        backgroundColor,
+        hoverOffset: 4,
+        space: 10,
+        borderRadius: 30,
+      }],
+    },
+    options: {
+      cutout: 115,
+    },
+  };
+  return config;
+};

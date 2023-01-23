@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useGetLabelsQuery } from '../store/apiSlice';
-import getLabels from '../utilities/utilities';
+import { getLabels } from '../utilities/utilities';
 
-// TODO: Update doughnut with api info
+// TODO: Update doughnut with correct percentage
+// TODO: Update total label with total
 // TODO: Go through the components and mark specific props as required
 
 function Labels() {
