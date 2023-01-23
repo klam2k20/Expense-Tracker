@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseURI = 'https://localhost:8080';
 
-const apiSlice = createApi({
+export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseURI }),
   endpoints: (builder) => ({
 
@@ -49,4 +49,6 @@ const apiSlice = createApi({
   }),
 });
 
-export default apiSlice;
+export const {
+  useGetCategoriesQuery, useGetLabelsQuery, useAddTransactionMutation, useDeleteTransactionMutation,
+} = apiSlice;
