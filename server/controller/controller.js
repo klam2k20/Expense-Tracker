@@ -27,7 +27,7 @@ async function postTransaction(req, res) {
   const transaction = model.Transaction({
     name,
     type,
-    amount,
+    amount: Number(amount),
   });
   await transaction.save((err) => {
     if (!err) return res.json(transaction);
