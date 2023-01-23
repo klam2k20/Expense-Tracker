@@ -16,7 +16,7 @@ async function postCategory(req, res) {
 // GET: /api/categories
 async function getCategories(req, res) {
   const categories = await model.Category.find();
-  const categoriesResult = categories.map((c) => ({ type: c.type, color: c.color }));
+  const categoriesResult = categories.map((c) => ({ _id: c._id, type: c.type, color: c.color }));
   return res.json(categoriesResult);
 }
 

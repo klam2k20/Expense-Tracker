@@ -11,7 +11,7 @@ function Labels() {
   if (isFetching) {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
-    content = data.map((category) => <Label category={category} />);
+    content = data.map((category) => <Label key={category._id} category={category} />);
   } else if (isError) {
     content = <div>{error.toString()}</div>;
   }

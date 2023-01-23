@@ -12,7 +12,12 @@ function History() {
   if (isFetching) {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
-    content = data.map((transaction) => <Transaction transaction={transaction} />);
+    content = data.map((transaction) => (
+      <Transaction
+        key={transaction._id}
+        transaction={transaction}
+      />
+    ));
   } else if (isError) {
     content = <div>{error.toString()}</div>;
   }
@@ -33,8 +38,18 @@ function Transaction({ transaction }) {
 
   if (!transaction) return <></>;
   return (
-    <div className="flex justify-center bg-gray-50 rounded-r py-2" style={{ borderRight: `0.5rem solid ${transaction.color}` }}>
-      <button className="px-2" aria-label="Delete" type="button" onClick={onClickHandler}><UilTrash size="25" color={transaction.color} /></button>
+    <div
+      className="flex justify-center bg-gray-50 rounded-r py-2"
+      style={{ borderRight: `0.5rem solid ${transaction.color}` }}
+    >
+      <button
+        className="px-2"
+        aria-label="Delete"
+        type="button"
+        onClick={onClickHandler}
+      >
+        <UilTrash size="25" color={transaction.color} />
+      </button>
       <div className="flex justify-between w-full pr-2">
         <span>{transaction.name}</span>
         <span className="font-bold">{`$${transaction.amount}`}</span>

@@ -15,8 +15,8 @@ function Form() {
   const [api] = useAddTransactionMutation();
 
   const onSubmit = async (data) => {
-    if (!data) return;
-    await api(data).unwrap();
+    const formData = { ...data, name: data.name.charAt(0).toUpperCase() + data.name.slice(1) };
+    await api(formData).unwrap();
     reset();
   };
 
@@ -26,16 +26,31 @@ function Form() {
         <h1 className="text-xl font-bold text-center">Transaction</h1>
         <form id="form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-4 mb-4">
-            <input {...register('name', { required: 'This field is required!' })} type="text" placeholder="Salary, Rent, Utilities" className="form-input" />
+            <input
+              {...register('name', { required: 'This field is required!' })}
+              className="form-input capitalize"
+              type="text"
+              placeholder="Salary, Rent, Utilities"
+            />
             <span className="form-error-label">{errors.name?.message}</span>
             <select {...register('type')} className="form-input">
               <option value="Investments" defaultValue>Investments</option>
               <option value="Savings">Savings</option>
               <option value="Expenses">Expenses</option>
             </select>
-            <input {...register('amount', { required: 'This field is required!' })} type="number" placeholder="Amount" className="form-input" />
+            <input
+              {...register('amount', { required: 'This field is required!' })}
+              className="form-input"
+              type="number"
+              placeholder="Amount"
+            />
             <span className="form-error-label">{errors.amount?.message}</span>
-            <button className="bg-indigo-500 w-full text-white py-2" type="submit">Add Transaction</button>
+            <button
+              className="bg-indigo-500 w-full text-white py-2"
+              type="submit"
+            >
+              Add Transaction
+            </button>
           </div>
         </form>
         <History />
