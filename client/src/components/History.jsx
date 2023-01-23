@@ -59,16 +59,6 @@ function Transaction({ transaction }) {
   );
 }
 
-Transaction.defaultProps = {
-  transaction: PropTypes.shape({
-    _id: '',
-    name: '',
-    color: 'rgb(255, 205, 86)',
-    type: '',
-    amount: 0,
-  }),
-};
-
 Transaction.propTypes = {
   transaction: PropTypes.shape({
     _id: PropTypes.string,
@@ -76,6 +66,6 @@ Transaction.propTypes = {
     color: PropTypes.string,
     type: PropTypes.string,
     amount: PropTypes.number,
-  }),
+  }).isRequired,
 };
 export default History;

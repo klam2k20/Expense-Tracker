@@ -44,20 +44,12 @@ function Label({ category }) {
   );
 }
 
-Label.defaultProps = {
-  category: PropTypes.shape({
-    color: 'rgb(255, 205, 86)',
-    type: '',
-    percent: 0,
-  }),
-};
-
 Label.propTypes = {
   category: PropTypes.shape({
     color: PropTypes.string,
     type: PropTypes.string,
     percent: PropTypes.number,
-  }),
+  }).isRequired,
 };
 
 export default Labels;
