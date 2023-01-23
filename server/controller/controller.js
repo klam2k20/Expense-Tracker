@@ -37,7 +37,7 @@ async function postTransaction(req, res) {
 
 // GET: /api/transactions
 async function getTransactions(req, res) {
-  const transactions = await model.Transaction.find();
+  const transactions = await model.Transaction.find().sort({ date: -1 });
   return res.json(transactions);
 }
 
@@ -65,17 +65,19 @@ async function getLabels(req, res) {
     {
       $unwind: '$category_info',
     },
-  ]).then((labels) => {
-    const result = labels.map((label) => ({
-      _id: label._id,
-      name: label.name,
-      type: label.type,
-      amount: label.amount,
-      color: label.category_info.color,
-      categoryId: label.category_info._id,
-    }));
-    res.json(result);
-  }).catch((err) => res.status(400).json({ message: `Error while Getting Labels ${err}` }));
+  ]).sort({ date: -1 })
+    .then((labels) => {
+      const result = labels.map((label) => ({
+        _id: label._id,
+        name: label.name,
+        type: label.type,
+        amount: label.amount,
+        color: label.category_info.color,
+        categoryId: label.category_info._id,
+      }));
+      res.json(result);
+    })
+    .catch((err) => res.status(400).json({ message: `Error while Getting Labels ${err}` }));
 }
 
 module.exports = {

@@ -13,7 +13,8 @@ function History() {
   if (isFetching) {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
-    content = data.map((transaction) => (
+    const transactions = data.slice(0, 5);
+    content = transactions.map((transaction) => (
       <Transaction
         key={transaction._id}
         transaction={transaction}
