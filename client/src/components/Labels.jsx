@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const categories = [
-  {
-    color: 'rgb(255, 99, 132)',
-    type: 'Savings',
-    percent: 45,
-  },
-  {
-    color: 'rgb(54, 162, 235)',
-    type: 'Investments',
-    percent: 20,
-  },
-  {
-    color: 'rgb(255, 205, 86)',
-    type: 'Expenses',
-    percent: 35,
-  },
-];
+import { useGetCategoriesQuery } from '../store/apiSlice';
 
 function Labels() {
+  const {
+    data, isFetching, isSuccess, isError, error,
+  } = useGetCategoriesQuery();
+
+  let content;
+  if (isFetching) {
+    content = <div>Loading</div>;
+  } else if (isSuccess) {
+    content = data.map((category) => <Label category={category} />);
+  } else if (isError) {
+    content = <div>{error.toString()}</div>;
+  }
+
   return (
     <div className="flex flex-col gap-4 w-full">
-      {categories.map((category) => <Label category={category} />)}
+      {content}
     </div>
   );
 }
