@@ -9,7 +9,7 @@ function Labels() {
 
   let content;
   if (isFetching) {
-    content = <div>Loading</div>;
+    content = <div>Loading...</div>;
   } else if (isSuccess) {
     content = data.map((category) => <Label category={category} />);
   } else if (isError) {

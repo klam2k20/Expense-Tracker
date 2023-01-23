@@ -1,30 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UilTrash from '@iconscout/react-unicons/icons/uil-trash-alt';
-
-const transactions = [
-  {
-    color: 'rgb(255, 99, 132)',
-    type: 'Savings',
-    percent: 45,
-  },
-  {
-    color: 'rgb(54, 162, 235)',
-    type: 'Investments',
-    percent: 20,
-  },
-  {
-    color: 'rgb(255, 205, 86)',
-    type: 'Expenses',
-    percent: 35,
-  },
-];
+import { useGetLabelsQuery } from '../store/apiSlice';
 
 function History() {
+  const {
+    data, isFetching, isSuccess, isError, error,
+  } = useGetLabelsQuery();
+  let content;
+
+  if (isFetching) {
+    content = <div>Loading...</div>;
+  } else if (isSuccess) {
+    content = data.map((transaction) => <Transaction transaction={transaction} />);
+  } else if (isError) {
+    content = <div>{error.toString()}</div>;
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold text-center">History</h1>
-      {transactions.map((transaction) => <Transaction transaction={transaction} />)}
+      {content}
     </div>
   );
 }
