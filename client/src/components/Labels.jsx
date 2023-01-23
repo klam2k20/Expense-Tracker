@@ -5,6 +5,7 @@ import { getLabels } from '../utilities/utilities';
 
 // TODO: Go through the components and mark specific props as required
 // TODO: Make naming of labels and transactions consistent
+// TODO: Remove old logo
 
 function Labels() {
   const {
