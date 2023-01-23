@@ -4,7 +4,9 @@ import History from './History';
 import { useAddTransactionMutation } from '../store/apiSlice';
 
 function Form() {
-  const { register, handleSubmit, reset } = useForm({
+  const {
+    register, handleSubmit, reset, formState: { errors },
+  } = useForm({
     defaultValues: {
       name: '',
       amount: '',
@@ -24,13 +26,15 @@ function Form() {
         <h1 className="text-xl font-bold text-center">Transaction</h1>
         <form id="form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-4 mb-4">
-            <input {...register('name')} type="text" placeholder="Salary, Rent, Utilities" className="form-input" />
+            <input {...register('name', { required: 'This field is required!' })} type="text" placeholder="Salary, Rent, Utilities" className="form-input" />
+            <span className="form-error-label">{errors.name?.message}</span>
             <select {...register('type')} className="form-input">
               <option value="Investments" defaultValue>Investments</option>
               <option value="Savings">Savings</option>
               <option value="Expenses">Expenses</option>
             </select>
-            <input {...register('amount')} type="text" placeholder="Amount" className="form-input" />
+            <input {...register('amount', { required: 'This field is required!' })} type="number" placeholder="Amount" className="form-input" />
+            <span className="form-error-label">{errors.amount?.message}</span>
             <button className="bg-indigo-500 w-full text-white py-2" type="submit">Add Transaction</button>
           </div>
         </form>

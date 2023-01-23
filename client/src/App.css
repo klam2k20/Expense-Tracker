@@ -14,3 +14,7 @@ select {
 .form-input {
 	@apply py-2 px-3 border border-gray-200 bg-white rounded-md focus:outline-none focus:ring-indigo-500 sm:text-sm w-full;
 }
+
+.form-error-label {
+	@apply text-sm text-red-500 -mt-3;
+}
