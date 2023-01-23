@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useGetCategoriesQuery } from '../store/apiSlice';
+import { useGetLabelsQuery } from '../store/apiSlice';
+import getLabels from '../utilities/utilities';
 
 function Labels() {
   const {
     data, isFetching, isSuccess, isError, error,
-  } = useGetCategoriesQuery();
+  } = useGetLabelsQuery();
 
   let content;
   if (isFetching) {
     content = <div>Loading...</div>;
   } else if (isSuccess) {
-    content = data.map((category) => <Label key={category._id} category={category} />);
+    content = getLabels(data, 'type').map((category) => <Label key={category._id} category={category} />);
   } else if (isError) {
     content = <div>{error.toString()}</div>;
   }
@@ -32,7 +33,7 @@ function Label({ category }) {
         <span className="font-light">{category.type}</span>
       </div>
       <span className="font-bold">
-        {category.percent}
+        {Math.round(category.percent)}
         %
       </span>
     </div>
