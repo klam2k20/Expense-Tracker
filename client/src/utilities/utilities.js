@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-const getSum = (transaction, type) => {
-  const sum = _(transaction)
+const getSum = (data, type) => {
+  const sum = _(data)
     .groupBy('type')
     .map((transactions, key) => {
       if (!type) return _.sumBy(transactions, 'amount'); // [100, 200, 300]
@@ -15,22 +15,22 @@ const getSum = (transaction, type) => {
   return sum;
 };
 
-export const getTotal = (transaction) => {
-  const categorySums = getSum(transaction);
+export const getTotal = (data) => {
+  const categorySums = getSum(data);
   return _.sum(categorySums);
 };
 
-export const getLabels = (transactions) => {
-  const categorySums = getSum(transactions, 'type');
-  const total = getTotal(transactions);
+export const getLabels = (data) => {
+  const categorySums = getSum(data, 'type');
+  const total = getTotal(data);
   const labels = _(categorySums)
     .map((category) => _.assign(category, { percent: (100 * category.sum) / total })).value();
   return labels;
 };
 
-export const getDoughnutConfigs = (transaction) => {
-  const data = getSum(transaction);
-  let backgroundColor = _.map(transaction, (t) => t.color);
+export const getDoughnutConfigs = (transactions) => {
+  const data = getSum(transactions);
+  let backgroundColor = _.map(transactions, (t) => t.color);
   backgroundColor = _.uniq(backgroundColor);
   const config = {
     data: {

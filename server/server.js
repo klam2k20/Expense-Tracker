@@ -5,6 +5,7 @@ const cors = require('cors');
 require('dotenv').config({ path: 'config.env' });
 
 const PORT = process.env.PORT || 5000;
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -12,7 +13,6 @@ app.use(require('./routes/route'));
 
 const dbConnection = require('./db/connection');
 
-// eslint-disable-next-line consistent-return
 dbConnection.then((db) => {
   if (!db) return process.exit(1);
 

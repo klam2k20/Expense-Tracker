@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UilTrash from '@iconscout/react-unicons/icons/uil-trash-alt';
+
 import { useGetLabelsQuery, useDeleteTransactionMutation } from '../store/apiSlice';
 
 function History() {

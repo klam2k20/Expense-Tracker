@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { useGetLabelsQuery } from '../store/apiSlice';
 import { getLabels } from '../utilities/utilities';
 
-// TODO: Go through the components and mark specific props as required
 // TODO: Make naming of labels and transactions consistent
 // TODO: Remove old logo
 

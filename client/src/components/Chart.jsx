@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+
 import Labels from './Labels';
 import { getDoughnutConfigs, getTotal } from '../utilities/utilities';
 import { useGetLabelsQuery } from '../store/apiSlice';
