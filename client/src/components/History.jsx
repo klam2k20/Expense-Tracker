@@ -27,15 +27,14 @@ function History() {
 
 function Transaction({ transaction }) {
   const [api] = useDeleteTransactionMutation();
-  const onClickHandler = (e) => {
-    if (!e.target.dataset.id) return 0;
-    api({ _id: e.target.dataset.id });
+  const onClickHandler = () => {
+    api({ _id: transaction._id });
   };
 
   if (!transaction) return <></>;
   return (
     <div className="flex justify-center bg-gray-50 rounded-r py-2" style={{ borderRight: `0.5rem solid ${transaction.color}` }}>
-      <button className="px-2" aria-label="Delete" type="button" data-id={transaction._id} onClick={onClickHandler}><UilTrash data-id={transaction._id} size="20" color={transaction.color} /></button>
+      <button className="px-2" aria-label="Delete" type="button" onClick={onClickHandler}><UilTrash size="25" color={transaction.color} /></button>
       <div className="flex justify-between w-full pr-2">
         <span>{transaction.name}</span>
         <span className="font-bold">{`$${transaction.amount}`}</span>
