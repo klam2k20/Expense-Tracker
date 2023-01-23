@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { useGetLabelsQuery } from '../store/apiSlice';
 import getLabels from '../utilities/utilities';
 
+// TODO: Update doughnut with api info
+// TODO: Go through the components and mark specific props as required
+
 function Labels() {
   const {
     data, isFetching, isSuccess, isError, error,
