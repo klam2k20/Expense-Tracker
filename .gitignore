@@ -28,3 +28,5 @@ client/.eslintrc.json
 server/.eslintrc.json
 .vscode
 
+# Secrets
+server/config.env
