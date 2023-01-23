@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UilTrash from '@iconscout/react-unicons/icons/uil-trash-alt';
-import { useGetLabelsQuery } from '../store/apiSlice';
+import { useGetLabelsQuery, useDeleteTransactionMutation } from '../store/apiSlice';
 
 function History() {
   const {
@@ -26,10 +26,16 @@ function History() {
 }
 
 function Transaction({ transaction }) {
+  const [api] = useDeleteTransactionMutation();
+  const onClickHandler = (e) => {
+    if (!e.target.dataset.id) return 0;
+    api({ _id: e.target.dataset.id });
+  };
+
   if (!transaction) return <></>;
   return (
     <div className="flex justify-center bg-gray-50 rounded-r py-2" style={{ borderRight: `0.5rem solid ${transaction.color}` }}>
-      <button className="px-2" aria-label="Delete" type="button"><UilTrash size="20" color={transaction.color} /></button>
+      <button className="px-2" aria-label="Delete" type="button" data-id={transaction._id} onClick={onClickHandler}><UilTrash data-id={transaction._id} size="20" color={transaction.color} /></button>
       <div className="flex justify-between w-full pr-2">
         <span>{transaction.name}</span>
         <span className="font-bold">{`$${transaction.amount}`}</span>
@@ -41,6 +47,7 @@ function Transaction({ transaction }) {
 
 Transaction.defaultProps = {
   transaction: PropTypes.shape({
+    _id: '',
     name: '',
     color: 'rgb(255, 205, 86)',
     type: '',
@@ -50,6 +57,7 @@ Transaction.defaultProps = {
 
 Transaction.propTypes = {
   transaction: PropTypes.shape({
+    _id: PropTypes.string,
     name: PropTypes.string,
     color: PropTypes.string,
     type: PropTypes.string,
