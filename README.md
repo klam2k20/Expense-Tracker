@@ -1,53 +1,72 @@
 <p align="center">
-    <img src="imgs/demo.gif">
+    <img src="imgs/demo.gif" height="500">
 </p>
 
 ## Overview
 
-This is a responsive Expense Tracker App created with ReactJS, MongoDB, Express and NodeJS.
-The app supports adding and deleting expenses in the following categories: Investments,
-Savings and Expenses. It then calculates the percentage of expenses per category and displays
-the data within a pie chart.
+This is a responsive Expense Tracker App. It supports adding and deleting expenses in the
+following categories: Investments, Savings and Expenses. It then calculates the percentage
+of expenses per category and displays the data within a pie chart.
 
-The application was designed to be responsive for various device sizes as seen below: <br> <br>
-<img src="imgs/expense-sm.png" height=500> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<img src="imgs/expense-md.png" height=500>
-<img src="imgs/expense-lg.png" height=500 width=800>
+## Technology
+
+- <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white">
+- <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white">
+- <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+- <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
+- <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white">
+
+## Features
+
+- Responsive Design
+<p align="center">
+    <img src="imgs/responsive.gif" height="400">
+</p>
+
+- Add Expenses
+<p align="center">
+    <img src="imgs/add-expenses.gif" height="400">
+</p>
+
+- Delete Expenses
+<p align="center">
+    <img src="imgs/delete-expenses.gif" height="400">
+</p>
 
 ## Getting Started
 
 ### Prerequisites
 
-- yarn
-  ```sh
-  npm install -g yarn
-  ```
+- yarn/npm
 - Sign up for MongoDB Atlas
   - Create a shared database
 
-### Installation
+#### Backend Installation
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/klam2k20/Expense-Tracker.git
-   ```
-2. `cd Expense-Tracker/server`
-3. Create `config.env` with your MongoDB URI
-   ```sh
-   PORT=8080
-   MONG0DB_URI=<MONGODBURI>
-   ```
-4. Install yarn packages
-   ```sh
-   yarn install
-   ```
-5. Start backend
-   ```sh
-   yarn start
-   ```
-6. `cd ../client`
-7. Install yarn packages
-8. Start frontend
-   ```sh
-   yarn start
-   ```
+```sh
+# Clone the repo
+git clone git clone https://github.com/klam2k20/Expense-Tracker.git
+
+# Create config.env
+cd Expense-Tracker/server
+PORT=8080
+MONG0DB_URI=<MONGODBURI>
+
+# Install dependencies
+yarn install
+
+# Start the server
+yarn start
+```
+
+#### Frontend Installation
+
+```sh
+cd ../client
+
+# Install dependencies
+yarn install
+
+# Start the application on port 3000
+yarn start
+```
